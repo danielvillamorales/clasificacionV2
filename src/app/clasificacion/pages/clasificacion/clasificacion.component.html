@@ -1,0 +1,58 @@
+<div class="rowm container-fluid">
+  <app-title title="Clasificacion De Prendas"></app-title>
+  <div class="col-12">
+    <input
+      #valor
+      type="text"
+      class="form-control"
+      placeholder="Codigo De Barras o Producto"
+      (keyup)="onKeyPress($event, valor.value)"
+    />
+  </div>
+  @if (isLoading()) {
+  <app-loader texto="Buscando..."></app-loader>
+  }@else { @if (clasificacion() != null ) {
+  <div
+    class="col-12 mt-3 p-3 rounded {{
+      clasificacion()!.clasificacion | replaceSpace
+    }}"
+  >
+    <h2 class="p-3 text-center">{{ clasificacion()!.clasificacion }}</h2>
+    <ul class="list-group opacity-75 striped">
+      <li class="list-group-item">
+        {{ clasificacion()!.referencia }} Consecutivo:
+        {{ clasificacion()!.consecutivo }}
+      </li>
+      <li class="list-group-item">
+        {{ clasificacion()!.producto }}:
+        {{ clasificacion()!.concepto | uppercase }}
+        {{ clasificacion()?.diseno | uppercase }}
+      </li>
+      <li class="list-group-item">
+        {{ clasificacion()?.grupo }}: {{ clasificacion()?.descgrupo }} |
+        {{ clasificacion()?.subgrupo }}: {{ clasificacion()?.descsubgrupo }}
+      </li>
+      <li class="list-group-item">
+        {{ clasificacion()?.composicion | uppercase }}
+      </li>
+      <li class="list-group-item">
+        precio: {{ clasificacion()!.tiquete | number }}
+      </li>
+    </ul>
+  </div>
+  }@else {
+  <div class="col-12">
+    <h2 class="p-3 text-center text-secondary">No hay clasificacion</h2>
+  </div>
+  }
+  <div class="col-12 mt-2 d-flex justify-content-center">
+    <img
+      style="max-width: 35%"
+      src="{{ imagen() | async }} "
+      alt="{{ clasificacion()?.referencia }}"
+      class="img-fluid border border-secondary-subtle rounded-2"
+    />
+  </div>
+
+  }
+</div>

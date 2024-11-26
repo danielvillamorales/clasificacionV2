@@ -1,0 +1,9 @@
+h1{
+  padding: 5px;
+
+  font-weight: bold;
+  color: #6ba7cc;
+  background: linear-gradient(323deg, #DDE6E8, #095a8b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

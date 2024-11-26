@@ -1,0 +1,78 @@
+<div class="row container-fluid">
+  <app-title title="Importacion De Dotacion De Personal"></app-title>
+  <div class="col-12">
+    <ul class="list-group">
+      <li class="list-group-item">
+        Se debe subir un archivo txt separado por
+        <span class="text-danger" style="font-size: 30px">,</span> con la
+        siguiente estructura
+      </li>
+      <li class="list-group-item">
+        <ul class="list-group">
+          <li class="list-group-item">codigo empleado</li>
+          <li class="list-group-item">codigo dotacion</li>
+          <li class="list-group-item">cantidad</li>
+          <li class="list-group-item">valor unitario</li>
+          <li class="list-group-item">fecha (yyyy-mm-dd)</li>
+        </ul>
+      </li>
+      <li class="list-group-item">
+        Seleccionar el archivo y darle al boton de subir
+      </li>
+    </ul>
+  </div>
+  <div class="col-12 mt-2">
+    <div class="input-group mb-3">
+      <input
+        class="form-control"
+        type="file"
+        id="archivo"
+        name="archivo"
+        accept=".txt"
+        (change)="onFileSelected($event)"
+        style="border-color: rgb(13, 110, 253); border-width: 1px"
+      />
+      <button
+        class="btn btn-outline-primary"
+        [disabled]="selectedFile == null"
+        (click)="onUpload()"
+      >
+        Subir
+      </button>
+    </div>
+  </div>
+  @if (isLoading()) {
+  <app-loader texto="Cargando..."></app-loader>
+  } @else {
+  <div class="col-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id Empleado</th>
+          <th>Id Dotación</th>
+          <th>Cantidad</th>
+          <th>Valor Unitario</th>
+          <th>Fecha</th>
+          <th>Fecha Creación</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (dotacion of dotaciones_entregadas(); track $index) {
+        <tr>
+          <td>{{ dotacion.empleado }}</td>
+          <td>{{ dotacion.dotacion }}</td>
+          <td>{{ dotacion.cantidad }}</td>
+          <td>{{ dotacion.valorunitario }}</td>
+          <td>{{ dotacion.fecha | date : "dd-MM-yyyy" }}</td>
+          <td>{{ dotacion.fechahoradecreacion | date : "medium" }}</td>
+        </tr>
+        }@empty {
+        <tr>
+          <td colspan="6" class="text-center">No hay dotaciones</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
