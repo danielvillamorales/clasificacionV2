@@ -28,7 +28,7 @@ export class ClasificacionService {
     consecutivo: number,
     codcolor: string | null
   ): Observable<string> {
-    const imagen_a_consultar: string = `http://201.236.231.148/fotosVtex/todas/${referencia}${consecutivo}${codcolor}_a.jpg`;
+    const imagen_a_consultar: string = `http://181.204.89.156/fotosVtex/todas/${referencia}${consecutivo}${codcolor}_a.jpg`;
     return this.http.head(imagen_a_consultar, { observe: 'response' }).pipe(
       map((response) => {
         if (response.status === 200) {
