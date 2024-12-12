@@ -14,6 +14,7 @@
           <li class="list-group-item">cantidad</li>
           <li class="list-group-item">valor unitario</li>
           <li class="list-group-item">fecha (yyyy-mm-dd)</li>
+          <li class="list-group-item">Descripcion del producto</li>
         </ul>
       </li>
       <li class="list-group-item">
@@ -23,20 +24,9 @@
   </div>
   <div class="col-12 mt-2">
     <div class="input-group mb-3">
-      <input
-        class="form-control"
-        type="file"
-        id="archivo"
-        name="archivo"
-        accept=".txt"
-        (change)="onFileSelected($event)"
-        style="border-color: rgb(13, 110, 253); border-width: 1px"
-      />
-      <button
-        class="btn btn-outline-primary"
-        [disabled]="selectedFile == null"
-        (click)="onUpload()"
-      >
+      <input class="form-control" type="file" id="archivo" name="archivo" accept=".txt"
+        (change)="onFileSelected($event)" style="border-color: rgb(13, 110, 253); border-width: 1px" />
+      <button class="btn btn-outline-primary" [disabled]="selectedFile == null" (click)="onUpload()">
         Subir
       </button>
     </div>
